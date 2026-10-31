@@ -10,6 +10,8 @@
 <!-- LOVABLE:END -->
 
 - Course content lives as data in src/content (course.ts + types.ts); screens render any lesson from that data, so new lessons are added there without touching UI.
+- Modules 5–8 use dedicated lesson-data files and existing section renderers; keep the original ordered lesson IDs even when titles change so stored progress and links remain valid.
+- Lesson navigation follows availableLessons and keys each quiz by lesson ID so adjacent route changes cannot reuse answers or checked state.
 - Module 4 lessons use the existing section types, including supervised sections and a bundled original schematic in a parts section; this keeps electrical teaching data-driven without changing shared rendering or progression.
 - Module 4 photographs use existing gallery sections with CDN asset pointers and lesson-scoped uncropped image styles; source attribution stays with each image so shared rendering and other modules remain unchanged.
 - Student progress is stored in browser localStorage via src/lib/progress.ts (no backend yet, by request).

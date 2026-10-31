@@ -1,4 +1,8 @@
 # Puesta a punto del proyecto remixado
+- [ ] Recuperar módulo 5: corregir prueba desactualizada y verificar clases 25–30, evaluaciones y progreso.
+- [ ] Desarrollar clases 31–48 con secciones existentes, sin recursos ni dependencias nuevos y preservando identificadores.
+- [ ] Verificar 48 clases, ocho módulos, navegación anterior/siguiente, evaluaciones, persistencia y pantallas móvil/computadora.
+- [ ] Revisión docente de módulos 5–8 y selección de manuales específicos: requiere instructor cualificado.
 - [x] Dejar el set de migraciones de Drizzle vacío y funcionando contra la base de datos nueva; se comprobó que no quedaron tablas ni registro de migraciones del proyecto original y que una migración de prueba aplica y revierte sin dejar rastro.
 
 # Paleta industrial e imagen split

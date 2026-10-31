@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
-import { AlertTriangle, CheckCircle2, ChevronLeft, Clock, ExternalLink, Target, BookOpen, ListChecks, ShieldAlert, GraduationCap, Video, XCircle, Eye } from "lucide-react";
-import { getLesson, isAvailable } from "@/content/course";
+import { AlertTriangle, CheckCircle2, ChevronLeft, ChevronRight, Clock, ExternalLink, Target, BookOpen, ListChecks, ShieldAlert, GraduationCap, Video, XCircle, Eye } from "lucide-react";
+import { availableLessons, getLesson, isAvailable } from "@/content/course";
 import type { Section, QuizQuestion } from "@/content/types";
 import { useProgress } from "@/lib/progress";
 import { AppShell, Card, LocalNotice } from "@/components/ui-kit";
@@ -44,6 +44,9 @@ function LessonPage() {
   if (!lesson || !isAvailable(lesson)) throw notFound();
   const done = progress.completed.includes(id);
   const pilot = id === "inverter-vs-convencional";
+  const position = availableLessons.findIndex((item) => item.id === id);
+  const previous = availableLessons[position - 1];
+  const next = availableLessons[position + 1];
   return (
     <AppShell>
       <article className={`lesson-article ${pilot ? "inverter-pilot" : ""} ${lesson.moduleId === "electricidad" ? "electrical-lesson-images" : ""}`}>
@@ -96,7 +99,7 @@ function LessonPage() {
         </Card>
       )}
 
-      {lesson.quiz && <Quiz lessonId={id} questions={lesson.quiz} />}
+      {lesson.quiz && <Quiz key={id} lessonId={id} questions={lesson.quiz} />}
 
       <Card className="mt-4 text-center">
         <Button variant={done ? "secondary" : "default"} onClick={() => toggleComplete(id)} className={`lesson-completion h-auto min-h-12 w-full whitespace-normal rounded-lg px-5 py-3 font-bold md:w-auto ${done ? "bg-success-soft text-success" : "bg-accent text-accent-foreground"}`}>
@@ -104,6 +107,10 @@ function LessonPage() {
         </Button>
         <div className="mt-2"><LocalNotice /></div>
       </Card>
+      <nav aria-label="Navegación entre clases" className="mt-5 grid gap-3 sm:grid-cols-2">
+        {previous ? <Button asChild variant="outline" className="h-auto min-h-12 justify-start whitespace-normal text-left"><Link to="/leccion/$lessonId" params={{ lessonId: previous.id }}><ChevronLeft className="shrink-0" /><span>Clase anterior: {previous.title}</span></Link></Button> : <span />}
+        {next ? <Button asChild variant="outline" className="h-auto min-h-12 justify-between whitespace-normal text-left"><Link to="/leccion/$lessonId" params={{ lessonId: next.id }}><span>Clase siguiente: {next.title}</span><ChevronRight className="shrink-0" /></Link></Button> : <Button asChild variant="outline"><Link to="/progreso">Ver mi progreso</Link></Button>}
+      </nav>
       </article>
     </AppShell>
   );
