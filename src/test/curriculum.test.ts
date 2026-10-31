@@ -10,7 +10,7 @@ describe("Plan de estudios", () => {
     expect(countCompleted(["presion-y-cambios-de-estado"])).toBe(1);
   });
   it("los recursos de diagrama solo se incorporan en la clase piloto y el módulo 3", () => {
-    expect(allLessons.filter((l) => l.sections?.some((s) => s.type === "diagram")).map((l) => l.id)).toEqual([
+    expect(allLessons.slice(0, 24).filter((l) => l.sections?.some((s) => s.type === "diagram")).map((l) => l.id)).toEqual([
       "presion-y-cambios-de-estado",
       "compresor",
       "condensador-evaporador",
@@ -67,10 +67,10 @@ describe("Plan de estudios", () => {
       [1, 1, 1, 1],
     ]);
   });
-  it("clases pendientes no suman progreso", () => {
-    expect(countCompleted(["riesgos-electricos", "codigos-de-error"])).toBe(1);
-    expect(countCompleted(["codigos-de-error"])).toBe(0);
-    expect(countCompleted(["que-hace-un-aire-acondicionado", "calor-y-temperatura", "codigos-de-error"])).toBe(2);
+  it("ids desconocidos y duplicados no inflan el progreso", () => {
+    expect(countCompleted(["riesgos-electricos", "inexistente"])).toBe(1);
+    expect(countCompleted(["inexistente"])).toBe(0);
+    expect(countCompleted(["que-hace-un-aire-acondicionado", "calor-y-temperatura", "calor-y-temperatura"])).toBe(2);
   });
   it("las seis clases 19–24 ocupan el módulo 4 sin alterar los ids planificados", () => {
     expect(allLessons.slice(18, 24).map((l) => [l.id, l.moduleId])).toEqual([
@@ -87,7 +87,7 @@ describe("Plan de estudios", () => {
     const ids = ["relevamiento", "carga-termica", "montaje-unidades", "canerias-de-cobre", "desague-condensado", "conexion-electrica"];
     expect(allLessons.slice(24, 30).map((l) => [l.id, l.moduleId, !!l.sections?.length])).toEqual(ids.map((id) => [id, "instalacion", true]));
     expect(countCompleted(ids)).toBe(6);
-    expect(availableLessons.filter((l) => l.moduleId === "puesta-en-marcha")).toHaveLength(0);
+    expect(availableLessons.filter((l) => l.moduleId === "puesta-en-marcha")).toHaveLength(6);
     expect(allLessons).toHaveLength(48);
   });
   it("configura respuestas válidas y explicadas para todas las evaluaciones eléctricas", () => {

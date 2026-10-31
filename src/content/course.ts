@@ -4,6 +4,9 @@ import { lesson7, lesson8, lesson9, lesson10, lesson11, lesson12 } from "./lesso
 import { lesson13, lesson14, lesson15, lesson16, lesson17, lesson18 } from "./lessons-m3";
 import { lesson19, lesson20, lesson21, lesson22, lesson23, lesson24 } from "./lessons-m4";
 import { lesson25, lesson26, lesson27, lesson28, lesson29, lesson30 } from "./lessons-m5";
+import { lesson31, lesson32, lesson33, lesson34, lesson35, lesson36 } from "./lessons-m6";
+import { lesson37, lesson38, lesson39, lesson40, lesson41, lesson42 } from "./lessons-m7";
+import { lesson43, lesson44, lesson45, lesson46, lesson47, lesson48 } from "./lessons-m8";
 import splitImg from "@/assets/split-system.jpg";
 import outdoorImg from "@/assets/outdoor-unit.jpg";
 import indoorImg from "@/assets/indoor-unit.jpg";
@@ -123,8 +126,6 @@ const lesson1: Lesson = {
   ],
 };
 
-const soon = (id: string, title: string, summary: string, risk = false): Lesson => ({ id, title, summary, minutes: 20, risk });
-
 export const modules: Module[] = [
   {
     id: "fundamentos", number: 1, level: "Inicial",
@@ -191,12 +192,7 @@ export const modules: Module[] = [
     title: "Puesta en marcha",
     description: "Pruebas y controles antes de entregar el equipo funcionando.",
     lessons: [
-      soon("prueba-estanqueidad", "Prueba de estanqueidad con nitrógeno", "Comprobar que el circuito no tenga fugas.", true),
-      soon("vacio", "Vacío del circuito", "Por qué y cómo se hace el vacío.", true),
-      soon("apertura-y-carga", "Apertura de válvulas y carga adicional", "Liberar el refrigerante y ajustar la carga.", true),
-      soon("mediciones-funcionamiento", "Mediciones de funcionamiento", "Presiones, temperaturas y consumo.", true),
-      soon("control-de-calidad", "Control de calidad", "Lista de verificación de la instalación.", true),
-      soon("entrega-al-cliente", "Entrega al cliente", "Cómo explicar el uso y cuidado del equipo."),
+      lesson31, lesson32, lesson33, lesson34, lesson35, lesson36,
     ],
   },
   {
@@ -204,12 +200,7 @@ export const modules: Module[] = [
     title: "Mantenimiento",
     description: "Mantener los equipos limpios, seguros y eficientes.",
     lessons: [
-      soon("mantenimiento-preventivo", "Mantenimiento preventivo", "Plan de tareas y frecuencia."),
-      soon("limpieza-interior", "Limpieza de la unidad interior", "Filtros, evaporador y bandeja."),
-      soon("limpieza-exterior", "Limpieza de la unidad exterior", "Condensador y ventilador."),
-      soon("revision-electrica", "Revisión eléctrica", "Control de conexiones y componentes.", true),
-      soon("deteccion-de-fugas", "Detección de fugas", "Métodos para encontrar pérdidas de refrigerante.", true),
-      soon("informe-de-servicio", "Registro e informe del servicio", "Documentar el trabajo realizado."),
+      lesson37, lesson38, lesson39, lesson40, lesson41, lesson42,
     ],
   },
   {
@@ -217,12 +208,7 @@ export const modules: Module[] = [
     title: "Diagnóstico de fallas",
     description: "Método ordenado para encontrar y resolver problemas.",
     lessons: [
-      soon("metodo-diagnostico", "Método de diagnóstico", "Pasos para diagnosticar con orden."),
-      soon("no-enciende", "El equipo no enciende", "Causas frecuentes y cómo verificarlas.", true),
-      soon("no-enfria", "Enciende pero no enfría", "Causas frecuentes y cómo verificarlas."),
-      soon("agua-ruido-vibracion", "Pierde agua, hace ruido o vibra", "Diagnóstico de problemas mecánicos y de desagüe."),
-      soon("codigos-de-error", "Códigos de error y placa", "Interpretar códigos del fabricante y fallas de la placa.", true),
-      soon("caso-integrador", "Caso integrador y evaluación final", "Aplicar todo lo aprendido en un caso completo."),
+      lesson43, lesson44, lesson45, lesson46, lesson47, lesson48,
     ],
   },
 ];
