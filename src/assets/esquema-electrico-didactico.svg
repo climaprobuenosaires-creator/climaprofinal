@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 540" role="img" aria-labelledby="title desc">
+  <title id="title">Circuito didáctico de ventilador monofásico</title>
+  <desc id="desc">Fase L, contacto de mando S1 abierto y motor M1 en serie hasta neutro N. Conductor PE independiente a la carcasa. Leyenda de símbolos y unión de conductores. No es un esquema de instalación.</desc>
+  <style>
+    :root{--diagram-paper:#ffffff;--diagram-ink:#18354c;--diagram-wire:#236888;--diagram-safe:#18704e;--diagram-muted:#526674;--diagram-rule:#d4e0e6}
+    text{font-family:Arial,sans-serif;fill:var(--diagram-ink);font-size:17px} .wire{fill:none;stroke:var(--diagram-wire);stroke-width:3} .safe{fill:none;stroke:var(--diagram-safe);stroke-width:3;stroke-dasharray:8 5} .rule{stroke:var(--diagram-rule)} .small{font-size:15px;fill:var(--diagram-muted)}
+  </style>
+  <rect width="680" height="540" fill="var(--diagram-paper)"/>
+  <text x="28" y="36" font-size="21" font-weight="bold">Ventilador monofásico · esquema conceptual</text>
+  <text x="28" y="63" class="small">Contacto abierto: el motor no recibe corriente de alimentación.</text>
+  <text x="30" y="142" font-weight="bold">L</text><text x="27" y="171" class="small">Fase</text>
+  <path class="wire" d="M 70 138 H 204 M 276 138 H 416 M 504 138 H 594"/>
+  <circle cx="204" cy="138" r="4" fill="var(--diagram-wire)"/><circle cx="276" cy="138" r="4" fill="var(--diagram-wire)"/>
+  <path class="wire" d="M 204 138 L 267 101"/>
+  <text x="240" y="86" text-anchor="middle" font-weight="bold">S1</text>
+  <text x="240" y="177" text-anchor="middle" class="small">Contacto de mando</text>
+  <circle cx="460" cy="138" r="44" class="wire"/><text x="460" y="147" text-anchor="middle" font-size="26">M</text>
+  <text x="460" y="208" text-anchor="middle" font-weight="bold">M1 · Motor</text>
+  <text x="609" y="142" font-weight="bold">N</text><text x="583" y="171" class="small">Neutro</text>
+  <rect x="401" y="227" width="119" height="41" rx="4" fill="none" stroke="var(--diagram-ink)" stroke-width="2"/>
+  <text x="460" y="253" text-anchor="middle" class="small">Carcasa</text>
+  <text x="28" y="253" font-weight="bold">PE</text><path class="safe" d="M 70 248 H 401"/>
+  <circle cx="401" cy="248" r="4" fill="var(--diagram-safe)"/>
+  <text x="91" y="276" class="small">Conductor de protección · no pasa por S1</text>
+  <path class="rule" d="M 28 310 H 652"/>
+  <text x="28" y="339" font-weight="bold">Leyenda de lectura</text>
+  <path class="wire" d="M 28 368 H 94"/><text x="111" y="374">Línea: conductor eléctrico</text>
+  <path class="wire" d="M 28 404 H 94 M 61 389 V 419"/><circle cx="61" cy="404" r="5" fill="var(--diagram-wire)"/>
+  <text x="111" y="410">Punto: unión eléctrica entre conductores</text>
+  <text x="28" y="451" class="small">La ubicación en el dibujo no representa la ubicación física.</text>
+  <text x="28" y="478" class="small">Protecciones de alimentación omitidas: estudiar en la clase 20.</text>
+  <text x="28" y="507" font-weight="bold">No usar para cablear un equipo. Consultar su esquema oficial.</text>
+</svg>
