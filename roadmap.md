@@ -1,4 +1,6 @@
 # Puesta a punto del proyecto remixado
+- [ ] Primera etapa inmersiva: inicio y navegación lateral, academia y progreso real, piloto split interactivo; verificar conservación del curso y pantallas pequeñas.
+- [ ] Etapas posteriores: modelos 3D manipulables verificados, diagramas eléctricos y secuencias interactivas, animaciones avanzadas y celebración de resultados; pendientes de próxima etapa y presupuesto.
 - [ ] Recuperar módulo 5: corregir prueba desactualizada y verificar clases 25–30, evaluaciones y progreso.
 - [ ] Desarrollar clases 31–48 con secciones existentes, sin recursos ni dependencias nuevos y preservando identificadores.
 - [ ] Verificar 48 clases, ocho módulos, navegación anterior/siguiente, evaluaciones, persistencia y pantallas móvil/computadora.
