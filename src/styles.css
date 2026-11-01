@@ -298,6 +298,18 @@ body { background-image: linear-gradient(155deg, color-mix(in oklab, var(--sky) 
 @keyframes academy-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes refrigerant-flow { from { background-position: 0% 0; } to { background-position: 200% 0; } }
 @keyframes completion-glow { from { box-shadow: 0 0 0 4px var(--success-soft); } to { box-shadow: none; } }
+.refrigerant-loop { display: block; width: 100%; max-width: 650px; margin: 24px auto 0; }
+.refrigerant-loop .flow-line { stroke-dasharray: 8 7; }
+.refrigerant-loop.is-playing .flow-line { animation: cycle-flow 1.5s linear infinite; }
+.component-selector[aria-pressed="true"] { background: var(--secondary); border-color: var(--sky); box-shadow: var(--shadow-glow); }
+.component-dot { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--sky); color: var(--accent-foreground); font-size: 12px; }
+.component-description { padding: 18px; min-height: 150px; border-left: 3px solid var(--sky); background: var(--secondary); }
+.activity-step { display: flex; gap: 12px; padding: 14px 12px; border-left: 3px solid transparent; font-size: 14px; transition: background-color 180ms, border-color 180ms; }
+.activity-step.is-current { border-color: var(--sky); background: var(--secondary); }
+.quiz-result { border-top: 1px solid var(--border); padding-block: 24px; }
+.quiz-result.is-perfect, .learning-celebration { animation: learning-success 550ms ease-out both; }
+@keyframes cycle-flow { to { stroke-dashoffset: -30; } }
+@keyframes learning-success { from { opacity: .3; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) { .visual-module:hover { transform: perspective(900px) translateY(-4px) rotateX(2deg); border-color: var(--sky); box-shadow: var(--shadow-glow); } }
 @media (min-width: 768px) { .academy-main { margin-left: 216px; transition: margin-left 180ms; } .nav-collapsed .academy-main { margin-left: 76px; } }
 @media (max-width: 767px) { .home-course h1 { font-size: 36px; } .home-course { min-height: 310px; } .progress-orbit { width: 76px; height: 76px; } .progress-orbit > span { font-size: 21px; } .split-stage { padding: 16px 8px; } .split-equipment { gap: 12px; } .split-equipment img { height: 140px; } .cycle-track { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; } .split-explanation { padding-inline: 14px; min-height: 180px; } .visual-module { padding: 14px; } }
