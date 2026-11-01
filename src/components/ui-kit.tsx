@@ -21,7 +21,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-30 border-b bg-card/90 text-foreground backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:px-8">
           <Link to="/" className="flex items-center gap-2 font-display text-lg font-bold text-primary-foreground">
-            <span className="grid h-8 w-8 place-items-center rounded-lg bg-primary text-primary-foreground"><Snowflake className="h-4 w-4" /></span>
+            <span className="grid h-8 w-8 place-items-center rounded-lg bg-secondary text-sky"><Snowflake className="h-4 w-4" /></span>
             <span>Clima<span className="text-sky">Pro</span><span className="block text-[10px] font-medium text-muted-foreground">ACADEMIA DE CLIMATIZACIÓN</span></span>
           </Link>
           <nav className="hidden gap-1 lg:flex">

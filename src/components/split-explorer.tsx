@@ -28,7 +28,7 @@ export function SplitExplorer() {
         <div className={`cycle-track ${playing ? "is-playing" : ""}`}>
           {nodes.map((item) => <Button key={item.id} variant="outline" aria-pressed={selected === item.id} onClick={() => setSelected(item.id)} className="cycle-node"><item.icon /><span>{library.find((entry) => entry.id === item.id)?.name}</span><span aria-hidden="true">→</span></Button>)}
         </div>
-        <div className="split-explanation" aria-live="polite"><p className="text-xs font-bold text-sky">{node.phase}</p><h3 className="mt-2 text-xl font-bold">{part?.name}</h3><p className="mt-2 text-sm">{part?.description}</p><p className="mt-2 text-sm text-muted-foreground">{node.detail}</p></div>
+        <div className="split-explanation" aria-live="polite"><p className="text-xs font-bold text-sky">{node?.phase}</p><h3 className="mt-2 text-xl font-bold">{part?.name}</h3><p className="mt-2 text-sm">{part?.description}</p><p className="mt-2 text-sm text-muted-foreground">{node?.detail}</p></div>
       </div>
       <p className="mt-3 text-xs text-muted-foreground">Esquema didáctico: no representa ubicación, escala ni velocidad real. El dispositivo de expansión y su ubicación varían según el equipo. No es una guía de intervención; revisión docente pendiente.</p>
     </section>
