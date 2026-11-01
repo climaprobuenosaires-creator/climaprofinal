@@ -22,3 +22,4 @@
 - Global academy styling uses semantic tokens and shared lesson-article classes while retaining specialized inverter and electrical media rendering. Why: all screens share an identity without changing educational data.
 - The supplied split reference is a CDN pointer selected through existing parts/gallery data and a dedicated image viewer; only that asset gains zoom controls. Why: preserve original labels and other course media while allowing mobile inspection.
 - Immersive presentation uses existing CSS tokens, a collapsible AppShell sidebar and a library-backed SplitExplorer; no 3D engine or new storage is introduced, to preserve curriculum and keep the first stage lightweight.
+- Parts and activity sections use shared presentation-only ComponentInspector and ActivitySequence; selection and reading steps never write progress, while quiz/completion feedback preserves existing scoring and persistence rules.

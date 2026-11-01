@@ -1,6 +1,7 @@
 # Puesta a punto del proyecto remixado
 - [x] Primera etapa inmersiva: azul noche/cian, navegación lateral plegable, ocho módulos visuales, indicadores reales y piloto split 2D con cuatro componentes seleccionables y pausa. 23 pruebas aprobadas; evaluación, finalización y persistencia comprobadas; cuatro pantallas a 390 px sin desbordamiento ni errores. Sin dependencias nuevas.
-- [ ] Etapas posteriores: modelos 3D manipulables verificados, diagramas eléctricos y secuencias interactivas, animaciones avanzadas y celebración de resultados; pendientes de próxima etapa y presupuesto.
+- [ ] Verificar siguiente etapa: fichas de componentes y pasos de actividades desde contenido existente, ciclo animado en lecciones y resultados circulares sin reglas nuevas de aprobación.
+- [ ] Modelos 3D manipulables y puntos sobre geometría real: requieren modelos técnicamente validados y recursos adicionales; no incorporar representaciones ficticias por ahorro.
 - [ ] Recuperar módulo 5: corregir prueba desactualizada y verificar clases 25–30, evaluaciones y progreso.
 - [x] Desarrollar clases 31–48 con secciones existentes, sin recursos ni dependencias nuevos y preservando identificadores; 48 clases disponibles confirmadas por las pruebas actuales.
 - [ ] Verificar 48 clases, ocho módulos, navegación anterior/siguiente, evaluaciones, persistencia y pantallas móvil/computadora.

@@ -11,6 +11,8 @@ import { SplitReferenceImage, ZoomableImage, splitReferenceUrl } from "@/compone
 import placaComponentes from "@/assets/m4-placa-componentes.jpg.asset.json";
 import placaSensores from "@/assets/m4-placa-sensores.jpg.asset.json";
 import puestaTierra from "@/assets/m4-puesta-tierra.jpg.asset.json";
+import { SplitExplorer } from "@/components/split-explorer";
+import { ComponentInspector, ActivitySequence } from "@/components/lesson-interactions";
 
 // Imágenes didácticas con etiquetas densas: se muestran completas y con ampliación para celulares.
 const zoomableUrls = new Set([placaComponentes.url, placaSensores.url, puestaTierra.url]);
@@ -38,6 +40,7 @@ export const Route = createFileRoute("/leccion/$lessonId")({
 });
 
 function LessonPage() {
+  const [celebratedId, setCelebratedId] = useState<string>();
   const { id } = Route.useLoaderData();
   const lesson = getLesson(id);
   const { progress, toggleComplete } = useProgress();
@@ -102,9 +105,10 @@ function LessonPage() {
       {lesson.quiz && <Quiz key={id} lessonId={id} questions={lesson.quiz} />}
 
       <Card className="mt-4 text-center">
-        <Button variant={done ? "secondary" : "default"} onClick={() => toggleComplete(id)} className={`lesson-completion h-auto min-h-12 w-full whitespace-normal rounded-lg px-5 py-3 font-bold md:w-auto ${done ? "bg-success-soft text-success" : "bg-accent text-accent-foreground"}`}>
+        <Button variant={done ? "secondary" : "default"} onClick={() => { if (!done) setCelebratedId(id); else setCelebratedId(undefined); toggleComplete(id); }} className={`lesson-completion h-auto min-h-12 w-full whitespace-normal rounded-lg px-5 py-3 font-bold md:w-auto ${done ? "bg-success-soft text-success" : "bg-accent text-accent-foreground"}`}>
           {done ? "✓ Clase completada (desmarcar)" : "Marcar clase como completada"}
         </Button>
+        {done && celebratedId === id && <p role="status" className="learning-celebration mt-4 flex items-center justify-center gap-2 text-sm text-success"><CheckCircle2 className="h-5 w-5" />Un paso más en tu formación · Clase {position + 1} de {availableLessons.length}</p>}
         <div className="mt-2"><LocalNotice /></div>
       </Card>
       <nav aria-label="Navegación entre clases" className="mt-5 grid gap-3 sm:grid-cols-2">
@@ -127,18 +131,11 @@ function SectionView({ s }: { s: Section }) {
         <Card>
           <h2 className="text-lg font-bold">{s.title}</h2>
           {s.image && (s.image === splitReferenceUrl ? <SplitReferenceImage /> : <div className="diagram-image-viewport"><img src={s.image} alt={s.title} loading="lazy" className="mt-3 w-full rounded-xl" /></div>)}
-          <div className="mt-3 grid gap-3 sm:grid-cols-2">
-            {s.parts.map((p, i) => (
-              <div key={p.name} className="rounded-xl bg-secondary p-3">
-                <p className="font-bold text-primary"><span className="mr-2 inline-grid h-6 w-6 place-items-center rounded-full bg-sky text-xs text-accent-foreground">{i + 1}</span>{p.name}</p>
-                <p className="mt-1 text-sm text-muted-foreground">{p.description}</p>
-              </div>
-            ))}
-          </div>
+          <ComponentInspector parts={s.parts} />
         </Card>
       );
     case "cycle":
-      return <Card><h2 className="text-lg font-bold">{s.title}</h2><p className="mt-2">{s.intro}</p><CycleDiagram /></Card>;
+      return <Card><h2 className="text-lg font-bold">{s.title}</h2><p className="mt-2">{s.intro}</p><SplitExplorer /></Card>;
     case "diagram": {
       const diagrams = {
         "phase-changes": <PhaseChangesDiagram />,
@@ -187,7 +184,7 @@ function SectionView({ s }: { s: Section }) {
         <Card>
           <h2 className="flex items-center gap-2 text-lg font-bold"><Eye className="h-5 w-5 text-sky" />{s.title}</h2>
           <p className="mt-2">{s.intro}</p>
-          <ol className="mt-3 space-y-2">{s.steps.map((st, i) => <li key={st} className="flex gap-3 text-sm"><span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-secondary text-xs font-bold text-primary">{i + 1}</span>{st}</li>)}</ol>
+          <ActivitySequence steps={s.steps} />
         </Card>
       );
     case "supervised":
@@ -214,45 +211,6 @@ function SectionView({ s }: { s: Section }) {
         </div>
       );
   }
-}
-
-function CycleDiagram() {
-  const steps = [
-    { n: "1", name: "Compresor", text: "Comprime el gas refrigerante: sube su presión y temperatura.", where: "Unidad exterior" },
-    { n: "2", name: "Condensador", text: "El gas caliente libera calor al aire de afuera y se vuelve líquido.", where: "Unidad exterior" },
-    { n: "3", name: "Dispositivo de expansión", text: "Baja bruscamente la presión del líquido, que se enfría mucho.", where: "Entre unidades" },
-    { n: "4", name: "Evaporador", text: "El refrigerante frío absorbe calor del ambiente y se evapora.", where: "Unidad interior" },
-  ];
-  return (
-    <div className="mt-4">
-      <svg viewBox="0 0 320 220" className="mx-auto w-full max-w-md" role="img" aria-label="Esquema del ciclo frigorífico">
-        <rect x="10" y="10" width="300" height="200" rx="20" fill="none" stroke="var(--sky)" strokeWidth="3" strokeDasharray="6 5" />
-        {[
-          { x: 160, y: 10, n: "1", label: "Compresor", c: "var(--destructive)" },
-          { x: 310, y: 110, n: "2", label: "Condensador", c: "var(--destructive)" },
-          { x: 160, y: 210, n: "3", label: "Expansión", c: "var(--sky)" },
-          { x: 10, y: 110, n: "4", label: "Evaporador", c: "var(--sky)" },
-        ].map((p) => (
-          <g key={p.n}>
-            <circle cx={p.x} cy={p.y} r="16" fill={p.c} />
-            <text x={p.x} y={p.y + 5} textAnchor="middle" fontSize="14" fontWeight="700" fill="var(--primary-foreground)">{p.n}</text>
-            <text x={p.x === 10 ? 34 : p.x === 310 ? 286 : p.x} y={p.y === 10 ? 44 : p.y === 210 ? 192 : p.y + 5} textAnchor={p.x === 10 ? "start" : p.x === 310 ? "end" : "middle"} fontSize="12" fontWeight="700" fill="var(--foreground)">{p.label}</text>
-          </g>
-        ))}
-        <text x="160" y="105" textAnchor="middle" fontSize="11" fill="var(--muted-foreground)">Circuito cerrado</text>
-        <text x="160" y="122" textAnchor="middle" fontSize="11" fill="var(--muted-foreground)">1 → 2 → 3 → 4 → 1</text>
-      </svg>
-      <div className="mt-3 grid gap-2 sm:grid-cols-2">
-        {steps.map((s) => (
-          <div key={s.n} className="rounded-xl bg-secondary p-3 text-sm">
-            <p className="font-bold text-primary">{s.n}. {s.name} <span className="font-normal text-muted-foreground">· {s.where}</span></p>
-            <p className="mt-1">{s.text}</p>
-          </div>
-        ))}
-      </div>
-      <p className="mt-2 text-xs text-muted-foreground">Rojo: zona caliente (alta presión). Celeste: zona fría (baja presión).</p>
-    </div>
-  );
 }
 
 function Quiz({ lessonId, questions }: { lessonId: string; questions: QuizQuestion[] }) {
@@ -290,8 +248,9 @@ function Quiz({ lessonId, questions }: { lessonId: string; questions: QuizQuesti
           Comprobar respuestas
         </Button>
       ) : (
-        <div className="mt-4 flex flex-wrap items-center gap-3">
-          <p className="font-bold">Resultado: {score} de {questions.length}</p>
+        <div className={`quiz-result mt-4 flex flex-wrap items-center gap-4 ${score === questions.length ? "is-perfect" : ""}`} role="status">
+          <div className="progress-orbit shrink-0" style={{ "--progress": `${questions.length ? score / questions.length * 100 : 0}%` } as React.CSSProperties}><span>{Math.round(questions.length ? score / questions.length * 100 : 0)}<small>%</small></span></div>
+          <div><p className="font-bold">Resultado: {score} de {questions.length}</p><p className="mt-1 text-sm text-muted-foreground">{score === questions.length ? "¡Todas las respuestas correctas!" : "Revisá las explicaciones y seguí practicando."}</p></div>
           <Button variant="outline" onClick={() => { setAnswers({}); setChecked(false); }} className="rounded-xl border px-4 py-2 text-sm font-bold">Reintentar</Button>
         </div>
       )}
