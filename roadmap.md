@@ -1,6 +1,8 @@
 # Puesta a punto del proyecto remixado
+- [x] Primera etapa inmersiva: azul noche/cian, navegación lateral plegable, ocho módulos visuales, indicadores reales y piloto split 2D con cuatro componentes seleccionables y pausa. 23 pruebas aprobadas; evaluación, finalización y persistencia comprobadas; cuatro pantallas a 390 px sin desbordamiento ni errores. Sin dependencias nuevas.
+- [ ] Etapas posteriores: modelos 3D manipulables verificados, diagramas eléctricos y secuencias interactivas, animaciones avanzadas y celebración de resultados; pendientes de próxima etapa y presupuesto.
 - [ ] Recuperar módulo 5: corregir prueba desactualizada y verificar clases 25–30, evaluaciones y progreso.
-- [ ] Desarrollar clases 31–48 con secciones existentes, sin recursos ni dependencias nuevos y preservando identificadores.
+- [x] Desarrollar clases 31–48 con secciones existentes, sin recursos ni dependencias nuevos y preservando identificadores; 48 clases disponibles confirmadas por las pruebas actuales.
 - [ ] Verificar 48 clases, ocho módulos, navegación anterior/siguiente, evaluaciones, persistencia y pantallas móvil/computadora.
 - [ ] Revisión docente de módulos 5–8 y selección de manuales específicos: requiere instructor cualificado.
 - [x] Dejar el set de migraciones de Drizzle vacío y funcionando contra la base de datos nueva; se comprobó que no quedaron tablas ni registro de migraciones del proyecto original y que una migración de prueba aplica y revierte sin dejar rastro.

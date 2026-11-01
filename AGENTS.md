@@ -21,3 +21,4 @@
 - Shared CourseProgress and courseOverview derive counts and the first unfinished available lesson from existing curriculum helpers; an exhausted course links to progress instead of restarting or opening a pending lesson. Why: home and academy must agree without changing stored progress.
 - Global academy styling uses semantic tokens and shared lesson-article classes while retaining specialized inverter and electrical media rendering. Why: all screens share an identity without changing educational data.
 - The supplied split reference is a CDN pointer selected through existing parts/gallery data and a dedicated image viewer; only that asset gains zoom controls. Why: preserve original labels and other course media while allowing mobile inspection.
+- Immersive presentation uses existing CSS tokens, a collapsible AppShell sidebar and a library-backed SplitExplorer; no 3D engine or new storage is introduced, to preserve curriculum and keep the first stage lightweight.
